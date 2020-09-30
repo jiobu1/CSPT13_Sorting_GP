@@ -43,7 +43,6 @@ my_list = [2, 5, 8,     4, 1, 3]
 
 From here, we go element by element, until all the elements are on the sorted side.
 
-
 # Insertion Sort
 
 ## Key Points
