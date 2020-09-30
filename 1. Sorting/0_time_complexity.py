@@ -4,7 +4,7 @@ animals = ['Duck', 'Jackal', 'Hippo', 'Aardvark', 'Cat', 'Flamingo', 'Iguana', '
 # Linear time
 def print_animals(animal_list): # O(n)
     for i in range(len(animal_list)): # O(n)
-        print(animal_list[i]) # O(1)
+        print(animal_list[i]) # O(1) + O(k) where k is the len of the string but for our purposes we ignore print
 
 
 """
@@ -24,7 +24,7 @@ def print_animals_a(animal_list): # O(n) Linear
         # O(2 * n)
         for _ in range(100000): # O(100000) (100000 * n)
             my_number += 1  # O(1) (1 * 100000) O(100000)
-            
+
     # O(100003 * n) => O(n)
     # O(100000 * 1) => O(1)
 
@@ -44,14 +44,14 @@ def print_animal_pairs(): # O(n ^ 2)
     for animal_1 in animals: # O(n)
         for animal_2 in animals: # O(n)
             print(f"{animal_1} - {animal_2}") # O(1)
-            
+
 # Print a list of all possible animal triples
 def print_animal_triples():
     for animal_1 in animals:
         for animal_2 in animals:
             for animal_3 in animals:
                 print(f"{animal_1} - {animal_2} - {animal_3}")
-                
+
 
 # Print a list of all possible animal triples
 def print_animal_triples_a():
@@ -63,7 +63,7 @@ def print_animal_triples_a():
             for animal_2 in animals:
                 for animal_3 in animals:
                     print(f"{animal_1} - {animal_2} - {animal_3}")
-                    
+
 
 
 # Exponential Time
@@ -98,7 +98,7 @@ def get_animal_combos(l):
 #     else:
 #         animal_combos = []
 #         previous_combos = get_animal_combos( l[1:] )
-        
+
 #         for combo in previous_combos:
 #             animal_combos.append( combo )
 #             animal_combos.append( combo + [l[0]] )
