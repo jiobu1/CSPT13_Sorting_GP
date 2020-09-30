@@ -19,8 +19,21 @@ print(my_random)
 
 searching_for = 7
 
+# O(n)
 def linear_search(arr, target):
-    pass
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return True
+
+    return False
+
+# another function
+# def linear_search(arr, target):
+#     for i in range(len(arr)):
+#         if arr[i] == target:
+#             return True
+
+#     return -1
 
 # Binary Search
 
@@ -32,8 +45,29 @@ Key Points
 """
 
 def find_value_binary(arr, value):
-    pass
+    first = 0
 
+    last = (len(arr) - 1)
+
+    found = False
+
+    while first <= last and not found:
+        # find the middle of the data
+        middle = (first + last) // 2
+
+        if arr[middle] == value:
+            found = True
+
+        else:
+            # left case
+            if value < arr[middle]:
+                last = middle - 1
+            else:
+                # right case
+                # search the upper half
+                first = middle + 1
+
+    return found
 
 
 # Comparing Linear vs. Binary
@@ -61,27 +95,27 @@ print(f"Runtime: {end - start}")
 
 # lets see what heppens with multiple runs
 
-# print("Linear")
-# start = time.time()
-# print(linear_search(my_random, searching_for))
-# end = time.time()
-# print(f"Runtime: {end - start}")
+print("Linear")
+start = time.time()
+print(linear_search(my_random, searching_for))
+end = time.time()
+print(f"Runtime: {end - start}")
 
-# print("Linear Again")
-# start = time.time()
-# print(linear_search(my_random, searching_for))
-# end = time.time()
-# print(f"Runtime: {end - start}")
+print("Linear Again")
+start = time.time()
+print(linear_search(my_random, searching_for))
+end = time.time()
+print(f"Runtime: {end - start}")
 
-# print("Binary")
-# start = time.time()
-# my_random.sort()
-# print(find_value_binary(my_random, searching_for))
-# end = time.time()
-# print(f"Runtime: {end - start}")
+print("Binary")
+start = time.time()
+my_random.sort()
+print(find_value_binary(my_random, searching_for))
+end = time.time()
+print(f"Runtime: {end - start}")
 
-# print("Binary _after_ sort")
-# start = time.time()
-# print(find_value_binary(my_random, searching_for))
-# end = time.time()
-# print(f"Runtime: {end - start}")
+print("Binary _after_ sort")
+start = time.time()
+print(find_value_binary(my_random, searching_for))
+end = time.time()
+print(f"Runtime: {end - start}")
