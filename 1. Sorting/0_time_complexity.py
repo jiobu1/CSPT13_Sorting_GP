@@ -1,3 +1,4 @@
+from binary_search_tree import BSTNode
 animals = ['Duck', 'Jackal', 'Hippo', 'Aardvark', 'Cat', 'Flamingo', 'Iguana', 'Giraffe', 'Elephant', 'Bear']
 
 
@@ -46,9 +47,9 @@ def print_animal_pairs(): # O(n ^ 2)
             print(f"{animal_1} - {animal_2}") # O(1)
 
 # Print a list of all possible animal triples
-def print_animal_triples():
-    for animal_1 in animals:
-        for animal_2 in animals:
+def print_animal_triples(): # O(n^3)
+    for animal_1 in animals: # O(n)
+        for animal_2 in animals: # O(n)
             for animal_3 in animals:
                 print(f"{animal_1} - {animal_2} - {animal_3}")
 
@@ -64,6 +65,28 @@ def print_animal_triples_a():
                 for animal_3 in animals:
                     print(f"{animal_1} - {animal_2} - {animal_3}")
 
+def insert_array(n): # O(n^2) -> O(n * n)
+    arr = []
+    for i in range(n): # O(n) beacuse of loop
+        arr.insert(0, i) # linear operation because you are inserting at the front
+        # arr.append(0, i) # if we were adding to the end this will be constant, then the function would be linear
+
+def time_insert():
+    for in in [10, 100, 1000, 10000]:
+        start = time.time()
+        insert_array(n)
+        end = time.time()
+        print(f"{n}: \t {end-start}")
+
+time_insert()
+# when tested the increase in time was multiplied so not linear but quadratic
+# 10 -> ~ 000005960464475390625
+# 100 -> ~ 000030040748966706875
+# 1000 -> ~ 0.000408495330810547
+# 10000 -> ~ 0.05913805961608887
+# 100000 -> ~ 0.472319641111328125
+# 1000000 -> ~ 4.838762998580933
+# runtimes are not increasing by a factor of 10, then it would be linear
 
 
 # Exponential Time
@@ -89,25 +112,25 @@ def get_animal_combos(l):
             animal_combos.append(combo + [l[0]])
         return animal_combos
 
-# counter = 0
-# def get_animal_combos(l):
-#     global counter
-#     list_length = len(l)
-#     if list_length == 0:
-#         return [ [] ]
-#     else:
-#         animal_combos = []
-#         previous_combos = get_animal_combos( l[1:] )
+counter = 0
+def get_animal_combos(l):
+    global counter
+    list_length = len(l)
+    if list_length == 0:
+        return [ [] ]
+    else:
+        animal_combos = []
+        previous_combos = get_animal_combos( l[1:] )
 
-#         for combo in previous_combos:
-#             animal_combos.append( combo )
-#             animal_combos.append( combo + [l[0]] )
-#             counter += 1
-#         return animal_combos
+        for combo in previous_combos:
+            animal_combos.append( combo )
+            animal_combos.append( combo + [l[0]] )
+            counter += 1
+        return animal_combos
 
 
-# get_animal_combos(animals)
-# print(counter)
+get_animal_combos(animals)
+print(counter)
 
 
 # Factorial Time
@@ -148,3 +171,15 @@ Key Points
 def free_animals(animals):
     while len(animals) > 0:
         animals = animals[0:len(animals) // 2]
+
+
+def bst_random(random_nums, target):
+    bst = BSTNode(random_nums[0]) # O(1)
+    # overall: n log n
+    for num in random_nums[1:]: # iteration ->O(n)
+        bst.insert(num) # insert is O(log n)
+
+    bst.contains(target) # O(log n) -> with each iteration you can throw out each item you are looking at
+    # in whole: n log n + log n --> n log n  --> Linearithmic time
+
+bst_random([8, 4, 16, 1, 3, 12, 6, 5, 7, 2, 15, 13, 14, 10, 9, 11], 13)
