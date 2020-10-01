@@ -1,4 +1,6 @@
 from binary_search_tree import BSTNode
+# Note: in the for loop you multiply otherwise add
+
 animals = ['Duck', 'Jackal', 'Hippo', 'Aardvark', 'Cat', 'Flamingo', 'Iguana', 'Giraffe', 'Elephant', 'Bear']
 
 
@@ -87,6 +89,18 @@ time_insert()
 # 100000 -> ~ 0.472319641111328125
 # 1000000 -> ~ 4.838762998580933
 # runtimes are not increasing by a factor of 10, then it would be linear
+
+
+def bst_ordered(n, target):
+    bst = BSTNode(0)
+    # Overall for the next two lines O(n^2)
+    for i in range(1, n): # O(n)
+        bst.insert(i) # O(n)
+
+    bst.contains(target) # O(n)
+    # Overall: n^2 (for the loop) + n (for the contains) --> O(n^2)
+
+bst_ordered(16, 13)
 
 
 # Exponential Time
@@ -183,3 +197,6 @@ def bst_random(random_nums, target):
     # in whole: n log n + log n --> n log n  --> Linearithmic time
 
 bst_random([8, 4, 16, 1, 3, 12, 6, 5, 7, 2, 15, 13, 14, 10, 9, 11], 13)
+
+
+#
