@@ -9,7 +9,7 @@ What are the two main pieces (cases) of any recursive algorithm?
 
 ## Steps for Quick Sort
 
-1. Start by choosing a pivot 
+1. Start by choosing a pivot
    * First or last element is _easiest_
    * Middle, median, or random element usually performs _better_ (tends to split original data more evenly)
 2. Move all elements _smaller_ than pivot to its left-hand side. Move all elements _larger_ than pivot to its right-hand side.
