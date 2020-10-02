@@ -3,8 +3,12 @@ One of the most straightforward problems we can solve recursively is to print ev
 in succession. We can do that simply by writing a function that prints n, then calls itself for n-1:
 """
 # import sys
+import sys
+sys.setrecursionlimit(10005)
+N = 10000 # too large
 
-n = 10
+n = 100
+
 def countdown_i(n):
     # while loop version
     while (n > 0): # condition and label
@@ -23,4 +27,5 @@ def countdown(n): # label
     countdown(n-1)
 
 # countdown_i(n)
+# countdown(N)
 countdown(n)
