@@ -121,14 +121,15 @@ Key Points
 # print(f"Runtime: {end - start}")
 
 random_range = 100000000
-size = 1500000
+size = 15000000
+nums = random.sample(range(size), size)
 
-nums = [28, 97, 84, 63, 66, 29, 98, 68, 96, 89, 15, 67, 8 ,83, 46, 58, 49, 45, 26, 13]
+# nums = [28, 97, 84, 63, 66, 29, 98, 68, 96, 89, 15, 67, 8 ,83, 46, 58, 49, 45, 26, 13]
 # unsorted, has to go through each number 1 by
 
 my_target = 45
 
-sorted_nums = sorted(nums)
+# sorted_nums = sorted(nums)
 
 def linear_search1(arr, target): # 0(n)
     """
@@ -143,7 +144,7 @@ def linear_search1(arr, target): # 0(n)
         # We didn't find it, return False
     return False
 
-sort = [8, 13, 15, 26, 28, 29, 45, 46, 49, 58, 63, 66, 67, 68, 83, 84, 89, 96, 97, 98]
+# sort = [8, 13, 15, 26, 28, 29, 45, 46, 49, 58, 63, 66, 67, 68, 83, 84, 89, 96, 97, 98]
 # Sorts -> splits in half, if it is lower than the middle it throws away the numbers after the middle
 # if the number is greater, it throws away the lower numbers
 # O(log n)
