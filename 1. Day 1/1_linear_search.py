@@ -143,7 +143,7 @@ def linear_search1(arr, target): # 0(n)
         # We didn't find it, return False
     return False
 
-sort = [8, 13, 15, 16, 28, 29, 45, 46, 49, 58, 63, 66, 67, 68, 83, 83, 84, 89, 90, 96, 97]
+sort = [8, 13, 15, 26, 28, 29, 45, 46, 49, 58, 63, 66, 67, 68, 83, 84, 89, 96, 97, 98]
 # Sorts -> splits in half, if it is lower than the middle it throws away the numbers after the middle
 # if the number is greater, it throws away the lower numbers
 # O(log n)
@@ -152,23 +152,63 @@ def binary_search(arr, target):
     """
     Returns true if target is in arr, else false
     """
+    # Remember to check the empty case
+
+    # start and end index in variables
+    # pass around slices of the array - creates a new array, would use extra memory and time, you also lose the original indices.
+    # Start = the starting index of the subset of the array we're searching in. Inclusive
+    # End = the end index of the subset --> inclusive
+    start = 0
+    end = len(arr)-1
+
     # High level algorithm:
-    # Look at the middle
-    # Compare it to the target
-    # if target == middle value:
-        # return True
-    # if target > middle value:
-        #search the right side
-    # if target < middle value:
-        # search the left side
-    # Repeat
+    # How do we know if it's not found?
+    # the subset that we're looking at has 0 or negative length
+    while end >= start:
+        # Look at the middle
+        # how do we get the midpoint?
+
+            # for the whole array, it's len(arr)/ 2-1
+            # for a subset of the array: (start + end)//2
+
+            middle_index = (start + end)//2
+            middle_value = arr[middle_index]
+
+            # Compare it to the target
+            # How to represent the subset/ "window" that we're searching in?
+            # start index + length of the subarray
+            if target == middle_value:
+                return True
+            if target > middle_value:
+                # search the right side -> set start = middle_index + 1
+                start = middle_index + 1
+            if target < middle_value:
+                # search the left side - > set end = middle_index -1
+                end = middle_index - 1
+            # Repeat
+
     # if not found, return False
-        # How do we know if it's not found?
-            # the subset that we're looking at has 0 or negative length
+    return False
+
+# print(nums, my_target)
+# print(linear_search1(nums, my_target))
+
+# print(sorted_nums, my_target)
+# print(linear_search1(sorted_nums, my_target))
+
+# print(sorted_nums, my_target)
+# print(binary_search(sorted_nums, 96)) -> works
+
+start = time.time()
+linear_search1(nums, my_target)
+end = time.time()
+print(f"Linear search array of length {len(nums)} took {end-start} seconds")
+
+sorted_nums = sorted(nums)
+
+start = time.time()
+binary_search(sorted_nums, my_target)
+end = time.time()
+print(f"Binary search array of length {len(sorted_nums)} took {end-start} seconds")
 
 
-print(nums, my_target)
-print(linear_search1(nums, my_target))
-
-print(sorted_nums, my_target)
-print(linear_search1(sorted_nums, my_target))
