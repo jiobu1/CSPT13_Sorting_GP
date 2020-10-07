@@ -28,3 +28,24 @@ def fibn(n): # labe
     return fibn(n-1) + fibn(n-2)
 
 print(fibn(10))
+
+
+# fibonacci sequence
+# every number in the sequence is the sm of the previous two numbers
+# fib(n) = fib(n-1) + fib(n-2)
+# fib(0) = 0
+# fib(1) = 1
+# 0 1 1 2 3 5 8 13 21
+
+def fib(n): # O(2^n)
+    if n == 0:
+        return 0
+
+    if n == 1:
+        return 1
+
+    return fib(n-1) + fib(n-2)
+
+print(fib(35))
+
+# 9227465

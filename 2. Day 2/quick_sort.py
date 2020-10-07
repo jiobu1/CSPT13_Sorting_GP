@@ -33,4 +33,54 @@ def quicksort(data):
     # return the concatenation of quicksort of the lhs +  pivot + rhs
     return quicksort(left) + [pivot] + quicksort(right)
 
-print(quicksort([5, 9, 3, 7, 2, 8, 1, 6]))
+# print(quicksort([5, 9, 3, 7, 2, 8, 1, 6]))
+
+# ------------------------------------------------------------------------------
+# Divide and conquer
+
+# Quicksort
+nums = [29, 84, 35, 22, 64, 97, 8, 83, 46, 58]
+# [22, 8]   p = 29 [84, 35, 64, 97, 83, 46, 58]  -> smaller chunks go to the left, larger goes to right of pivot
+# [8] p = 22 []    [35, 64, 97, 83, 46, 58] p = 84 [97]
+# [8, 22]          [] p = 35  [64, 83, 46, 58]
+# [8, 22]               [46, 58] p = 64 [83]
+#                       p = 46 [58]
+#    [8, 22, 29, 35, 46, 58, 64, 83, 84, 94]
+# sorting version of a binary search tree
+
+
+def partition1(arr):
+   # choose a pivot (the first element)
+    pivot = arr[0]
+    # divide the array into chunks
+    left = []
+    right = []
+
+    for element in arr[1:]:
+        # every element < pivot goes into the "left" chunk
+        if element < pivot:
+            left.append(element)
+        # every element > = pivot goes into the "right" chunk
+        if element >= pivot:
+            right.append(element)
+
+    return left, pivot, right
+
+def quicksort1(arr):
+    # when do we stop recursing? What's our base case?
+        # when there is only one element in the array
+    if len(arr) <= 1:
+        return arr
+
+    left, pivot, right = partition1(arr)
+
+    # quick sort the left chunks
+    sorted_left = quicksort1(left)
+    # quick sort the right chunks
+    sorted_right = quicksort1(right)
+    # put the chunks back together
+    sort = sorted_left + [pivot] + sorted_right
+
+    return sort
+
+print(quicksort1(nums))

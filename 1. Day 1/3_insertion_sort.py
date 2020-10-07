@@ -49,10 +49,12 @@ nums = [97, 84, 63, 66, 29, 8, 83, 46, 58, 49, 45, 26, 13]
 
 # basically selection_sort
 # find the smallest, put it at the front, find the next smallest, put it in second place, and so forth
+# best to worst case is O(n^2)
 
 # bubble_sort
 # compare first two numbers, if smaller/larger put to left or right. Look at the next three numbers
 # bubbles up the largest element to the end
+# best to worst case is O(n^2)
 
 
 
@@ -68,7 +70,7 @@ nums = [97, 84, 63, 66, 29, 8, 83, 46, 58, 49, 45, 26, 13]
 # 2) how do we move the other elements over?
 
 # Plan
-def insertion_sort1(arr):
+def insertion_sort1(arr): #O(n^2)
 # you have part of the array that is sorted
     # we can have an index ot the first element that's unsorted
     first_unsorted_index = 1
@@ -78,28 +80,23 @@ def insertion_sort1(arr):
         # swap it in place/ shift other elements to the right
         # store the element we're trying to insert into a variable
         current_element = arr[first_unsorted_index]
-        print("trying to insert " + str(current_element))
         # compare it to each of the elements in the sorted part of the array, going from biggest --> smallest
         sorted_index = first_unsorted_index - 1
         while  sorted_index >= 0:
             print(sorted_index)
             # if the sorted element is bigger than the current, shift the sorted element
             if arr[sorted_index] > current_element:
-                print(sorted_index, "greater")
                 arr[sorted_index + 1] = arr[sorted_index]
             # otherwise, if sorted element is < current:
             elif arr[sorted_index] < current_element:
-                print(sorted_index, "less or equal")
                 # we found the right place for it and we can insert it there
                 arr[sorted_index + 1] = current_element
                 break
             # else if you get to the end:
             if sorted_index == 0: # elif caused function to break
-                print("beginning")
                 arr[sorted_index] = current_element
             sorted_index = sorted_index - 1
         first_unsorted_index += 1
-        print("inserted " + str(current_element), arr)
 
     return arr
 
@@ -107,3 +104,25 @@ print(insertion_sort1(nums))
 
 
 
+def insertion_sort2(arr):
+    # O(n^2) -> average
+    # best case O(n) if list is already sorted
+    # worst case backward sort
+    # Keep a boundary between sort/unsorted parts of the array
+    # Unsorted index points to the first unsorted element in the array
+    for unsorted_index in range(1, len(arr)):
+        # Current element is the first unsorted element that we're trying to insert into the sorted part of the array
+        current_element = arr[unsorted_index]
+        # Loop through the sorted part of th array backwards (biggest --> smallest)
+        sorted_index = unsorted_index - 1
+        # Stop when we reach the beginning of the array or the sorted element is <= the current element
+        while sorted_index >= 0 and arr[sorted_index] > current_element:
+            # If the sorted element  > current element, shift it right by 1
+            arr[sorted_index + 1] = arr[sorted_index]
+            # Decrement sorted index to keep looping backwards
+            sorted_index -= 1
+        # At this point sorted_index is the index where the current element belongs
+        # Insert the current element into the array
+        arr[sorted_index + 1] = current_element
+
+    return arr
