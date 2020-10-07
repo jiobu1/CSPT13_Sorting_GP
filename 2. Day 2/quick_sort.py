@@ -69,18 +69,21 @@ def partition1(arr):
 def quicksort1(arr):
     # when do we stop recursing? What's our base case?
         # when there is only one element in the array
-    if len(arr) <= 1:
+    if len(arr) <= 1: # O(1)
         return arr
 
-    left, pivot, right = partition1(arr)
+    left, pivot, right = partition1(arr) # O(n)
 
     # quick sort the left chunks
-    sorted_left = quicksort1(left)
+    sorted_left = quicksort1(left) # O(n log n)
     # quick sort the right chunks
-    sorted_right = quicksort1(right)
+    sorted_right = quicksort1(right) # O(n log n)
     # put the chunks back together
-    sort = sorted_left + [pivot] + sorted_right
+    sort = sorted_left + [pivot] + sorted_right # O(1) or maybe O(n)
 
     return sort
 
 print(quicksort1(nums))
+
+
+
