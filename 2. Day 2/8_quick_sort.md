@@ -69,7 +69,7 @@ def quicksort(data):
     return quicksort(left) + [pivot] + quicksort(right)
 ```
 
-This code does not sort _in-place_. That is, it makes new lists left and right and constructs the results from that. 
+This code does not sort _in-place_. That is, it makes new lists left and right and constructs the results from that.
 An _in-place_ sort would reuse the original list and keep additional allocation to a minimum.
 
 

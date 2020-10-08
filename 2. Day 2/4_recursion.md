@@ -32,3 +32,16 @@ Recursion is hard, so it is also very frequently found in interviews.
 - compute the nth term
 - list the first n terms of
 - generate all possible permutatio
+
+
+### Pros and Cons
+PROS
+- intuitive
+- elegant
+- starting point
+    - base
+    - how to get to base case
+
+CONS
+- mind-bending
+- non performant (requires a lot of memory)
