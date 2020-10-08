@@ -27,3 +27,8 @@ Recursion is hard, so it is also very frequently found in interviews.
 * We must have a base case
 * We must move to that base case, or we'll get caught in a loop
 * The time complexity of a function that recursively calls itself once is O(n)
+
+### When to Use Recursion
+- compute the nth term
+- list the first n terms of
+- generate all possible permutatio
